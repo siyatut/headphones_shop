@@ -1,21 +1,33 @@
 import { Link } from "react-router-dom";
+import { FiHeart, FiShoppingCart } from "react-icons/fi";
 
 export function Header() {
+  const favoritesCount = 0;
+  const cartCount = 0;
+
   return (
-    <header style={{ padding: 16, borderBottom: "1px solid #eee" }}>
-      <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-        <Link to="/" style={{ fontWeight: 700 }}>
-          QPICK
-        </Link>
-
-        <div style={{ marginLeft: "auto", display: "flex", gap: 12 }}>
-          <a href="tel:+70000000000" style={{ textDecoration: "none" }}>
-            📞
-          </a>
-
-          <Link to="/cart" style={{ textDecoration: "none" }}>
-            🛒
+    <header className="header">
+      <div className="container">
+        <div className="headerInner">
+          <Link className="logo" to="/">
+            QPICK
           </Link>
+
+          <div className="headerIcons">
+            <Link className="iconLink" to="/">
+              <FiHeart className="iconSvg" size={22} />
+              {favoritesCount > 0 ? (
+                <span className="iconBadge">{favoritesCount}</span>
+              ) : null}
+            </Link>
+
+            <Link className="iconLink" to="/cart">
+              <FiShoppingCart className="iconSvg" size={22} />
+              {cartCount > 0 ? (
+                <span className="iconBadge">{cartCount}</span>
+              ) : null}
+            </Link>
+          </div>
         </div>
       </div>
     </header>

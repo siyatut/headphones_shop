@@ -1,8 +1,31 @@
+import { ProductCard } from "../components/ProductCard";
+import { products } from "../data/products";
+
 export function CatalogPage() {
+  const wired = products.filter((p) => p.section === "wired");
+  const wireless = products.filter((p) => p.section === "wireless");
+
+  const handleBuy = (productId: string) => {
+    console.log("BUY:", productId);
+  };
+
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Каталог</h1>
-      <p>Здесь будут карточки товаров.</p>
+    <div className="page">
+      <div className="container">
+        <h2 className="sectionTitle">Наушники</h2>
+        <div className="grid">
+          {wired.map((p) => (
+            <ProductCard key={p.id} product={p} onBuy={handleBuy} />
+          ))}
+        </div>
+
+        <h2 className="sectionTitle">Беспроводные наушники</h2>
+        <div className="grid">
+          {wireless.map((p) => (
+            <ProductCard key={p.id} product={p} onBuy={handleBuy} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
