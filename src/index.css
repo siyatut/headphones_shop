@@ -201,8 +201,10 @@ a:hover {
   gap: 10px; 
 }
 
-.ratingStar {
-  line-height: 1;
+.ratingStarIcon {
+  width: 22px;
+  height: 22px;
+  display: block;
 }
 
 .ratingValue {

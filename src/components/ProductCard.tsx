@@ -1,4 +1,5 @@
 import type { Product } from "../data/products";
+import starIcon from "../assets/star.png";
 
 type Props = {
   product: Product;
@@ -34,7 +35,7 @@ export function ProductCard({ product, onBuy }: Props) {
 
         <div className="cardBottomRow">
           <div className="ratingBox">
-            <span className="ratingStar">⭐</span>
+            <img className="ratingStarIcon" src={starIcon} alt="" />
             <span className="ratingValue">{product.rate}</span>
           </div>
 
