@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { FiHeart, FiShoppingCart } from "react-icons/fi";
+import { useCart } from "../context/CartContext";
 
 export function Header() {
-  const favoritesCount = 0;
-  const cartCount = 0;
+  const favoritesCount = 0; 
+  const { totalCount } = useCart();
 
   return (
     <header className="header">
@@ -23,9 +24,7 @@ export function Header() {
 
             <Link className="iconLink" to="/cart">
               <FiShoppingCart className="iconSvg" size={22} />
-              {cartCount > 0 ? (
-                <span className="iconBadge">{cartCount}</span>
-              ) : null}
+              {totalCount > 0 ? <span className="iconBadge">{totalCount}</span> : null}
             </Link>
           </div>
         </div>

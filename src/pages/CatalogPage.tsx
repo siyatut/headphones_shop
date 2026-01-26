@@ -1,12 +1,15 @@
 import { ProductCard } from "../components/ProductCard";
 import { products } from "../data/products";
+import { useCart } from "../context/CartContext";
 
 export function CatalogPage() {
+  const { addItem } = useCart();
+
   const wired = products.filter((p) => p.section === "wired");
   const wireless = products.filter((p) => p.section === "wireless");
 
   const handleBuy = (productId: string) => {
-    console.log("BUY:", productId);
+    addItem(productId);
   };
 
   return (

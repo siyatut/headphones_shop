@@ -26,7 +26,6 @@ export function ProductCard({ product, onBuy }: Props) {
           <div className="cardPrice">
             <span className="priceCurrent">{product.price} ₽</span>
 
-            {/* всегда есть строка под oldPrice, чтобы не прыгала высота */}
             <span className={`priceOld ${hasOld ? "" : "priceOldHidden"}`}>
               {hasOld ? `${product.oldPrice} ₽` : "0 ₽"}
             </span>
@@ -39,7 +38,11 @@ export function ProductCard({ product, onBuy }: Props) {
             <span className="ratingValue">{product.rate}</span>
           </div>
 
-          <button className="buyBtn" onClick={() => onBuy(product.id)}>
+          <button
+            type="button"
+            className="buyBtn"
+            onClick={() => onBuy(product.id)}
+          >
             Купить
           </button>
         </div>
