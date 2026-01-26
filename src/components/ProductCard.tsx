@@ -1,34 +1,38 @@
 import type { Product } from "../data/products";
 import starIcon from "../assets/star.png";
-import { useFavorites } from "../context/FavoritesContext";
-
 import { FiHeart } from "react-icons/fi";
-import { FaHeart } from "react-icons/fa";
 
 type Props = {
   product: Product;
-  onBuy: (productId: string) => void;
+  onBuy: () => void;
+
+  favorite: boolean;
+  onToggleFavorite: () => void;
 };
 
-export function ProductCard({ product, onBuy }: Props) {
+export function ProductCard({ product, onBuy, favorite, onToggleFavorite }: Props) {
   const hasOld = Boolean(product.oldPrice);
-
-  const { toggle, isFavorite } = useFavorites();
-  const active = isFavorite(product.id);
 
   return (
     <div className="card">
-      {/* FAVORITE BUTTON */}
+      {/* Favorite Button */}
       <button
         type="button"
         className="favBtn"
-        onClick={() => toggle(product.id)}
+        onClick={onToggleFavorite}
+        aria-label={favorite ? "Убрать из избранного" : "Добавить в избранное"}
+        title={favorite ? "Убрать из избранного" : "Добавить в избранное"}
       >
-        {active ? (
-          <FaHeart className="favIcon favIconFilled" size={22} />
-        ) : (
-          <FiHeart className="favIcon favIconOutline" size={22} />
-        )}
+        <FiHeart
+          className="favIcon"
+          size={22}
+          style={{
+            color: "#FF8A00",
+            fill: favorite ? "#FF8A00" : "transparent",
+            stroke: "#FF8A00",
+            strokeWidth: 2,
+          }}
+        />
       </button>
 
       <div className="cardImage">
@@ -58,7 +62,7 @@ export function ProductCard({ product, onBuy }: Props) {
             <span className="ratingValue">{product.rate}</span>
           </div>
 
-          <button type="button" className="buyBtn" onClick={() => onBuy(product.id)}>
+          <button className="buyBtn" onClick={onBuy}>
             Купить
           </button>
         </div>
