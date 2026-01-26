@@ -26,7 +26,13 @@ a:hover {
 .container {
   max-width: 1110px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0; 
+}
+
+@media (max-width: 1150px) {
+  .container {
+    padding: 0 24px;
+  }
 }
 
 .main {
@@ -112,7 +118,7 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(3, 350px);
   gap: 30px;
-  justify-content: center;
+  justify-content: start; /* было center */
 }
 
 /* ===== CARD ===== */
@@ -128,7 +134,7 @@ a:hover {
   display: flex;
   flex-direction: column;
 
-  position: relative; /* нужно для favBtn (absolute) */
+  position: relative; 
 }
 
 /* ===== FAVORITE BUTTON (top-right) ===== */
@@ -162,11 +168,11 @@ a:hover {
 }
 
 .favIconOutline {
-  color: #ff8a00; /* контур */
+  color: #ff8a00;
 }
 
 .favIconFilled {
-  color: #ff8a00; /* заливка */
+  color: #ff8a00;
 }
 
 /* ===== CARD IMAGE ===== */
