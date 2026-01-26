@@ -1,5 +1,9 @@
 import type { Product } from "../data/products";
 import starIcon from "../assets/star.png";
+import { useFavorites } from "../context/FavoritesContext";
+
+import { FiHeart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 
 type Props = {
   product: Product;
@@ -9,8 +13,24 @@ type Props = {
 export function ProductCard({ product, onBuy }: Props) {
   const hasOld = Boolean(product.oldPrice);
 
+  const { toggle, isFavorite } = useFavorites();
+  const active = isFavorite(product.id);
+
   return (
     <div className="card">
+      {/* FAVORITE BUTTON */}
+      <button
+        type="button"
+        className="favBtn"
+        onClick={() => toggle(product.id)}
+      >
+        {active ? (
+          <FaHeart className="favIcon favIconFilled" size={22} />
+        ) : (
+          <FiHeart className="favIcon favIconOutline" size={22} />
+        )}
+      </button>
+
       <div className="cardImage">
         {product.img ? (
           <img src={product.img} alt={product.title} />
@@ -38,11 +58,7 @@ export function ProductCard({ product, onBuy }: Props) {
             <span className="ratingValue">{product.rate}</span>
           </div>
 
-          <button
-            type="button"
-            className="buyBtn"
-            onClick={() => onBuy(product.id)}
-          >
+          <button type="button" className="buyBtn" onClick={() => onBuy(product.id)}>
             Купить
           </button>
         </div>

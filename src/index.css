@@ -1,3 +1,5 @@
+/* ===== RESET / BASE ===== */
+
 * {
   box-sizing: border-box;
 }
@@ -19,8 +21,10 @@ a:hover {
   opacity: 0.7;
 }
 
+/* ===== LAYOUT CONTAINER ===== */
+
 .container {
-  max-width: 1110px; 
+  max-width: 1110px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -28,6 +32,8 @@ a:hover {
 .main {
   margin-top: 28px;
 }
+
+/* ===== HEADER ===== */
 
 .header {
   padding: 16px 0;
@@ -87,6 +93,8 @@ a:hover {
   line-height: 1;
 }
 
+/* ===== PAGE ===== */
+
 .page {
   padding: 24px 0;
 }
@@ -98,12 +106,16 @@ a:hover {
   color: #838383;
 }
 
+/* ===== GRID ===== */
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 350px);
   gap: 30px;
   justify-content: center;
 }
+
+/* ===== CARD ===== */
 
 .card {
   width: 350px;
@@ -115,7 +127,49 @@ a:hover {
 
   display: flex;
   flex-direction: column;
+
+  position: relative; /* нужно для favBtn (absolute) */
 }
+
+/* ===== FAVORITE BUTTON (top-right) ===== */
+
+.favBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+  z-index: 10;
+}
+
+.favBtn:hover {
+  opacity: 0.85;
+}
+
+.favIcon {
+  display: block;
+  color: #ff8a00;
+}
+
+.favIconOutline {
+  color: #ff8a00; /* контур */
+}
+
+.favIconFilled {
+  color: #ff8a00; /* заливка */
+}
+
+/* ===== CARD IMAGE ===== */
 
 .cardImage {
   height: 237px;
@@ -135,6 +189,8 @@ a:hover {
   border-radius: 12px;
   background: #f2f2f2;
 }
+
+/* ===== CARD BODY ===== */
 
 .cardBody {
   margin-top: auto;
@@ -160,11 +216,13 @@ a:hover {
   white-space: nowrap;
 }
 
+/* ===== PRICE ===== */
+
 .cardPrice {
-  width: fit-content;         
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: center;     
+  align-items: center;
   white-space: nowrap;
 }
 
@@ -178,9 +236,9 @@ a:hover {
 
 .priceOld {
   display: block;
-  font-size: 13px;    
-  font-weight: 600;  
-  line-height: 1;     
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
   letter-spacing: 0;
   color: rgba(255, 138, 0, 0.6);
   text-decoration: line-through;
@@ -192,6 +250,8 @@ a:hover {
   visibility: hidden;
 }
 
+/* ===== BOTTOM ROW ===== */
+
 .cardBottomRow {
   display: flex;
   justify-content: space-between;
@@ -199,12 +259,14 @@ a:hover {
   margin-top: 10px;
 }
 
+/* ===== RATING ===== */
+
 .ratingBox {
   width: 60px;
   height: 22px;
   display: inline-flex;
   align-items: center;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .ratingStarIcon {
@@ -218,6 +280,8 @@ a:hover {
   font-weight: 600;
   line-height: 1;
 }
+
+/* ===== BUY BUTTON ===== */
 
 .buyBtn {
   border: none;
