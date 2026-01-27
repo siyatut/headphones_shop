@@ -28,7 +28,7 @@ export function CartPage() {
         <div className="cartLayout">
           <div className="cartList">
             {cartItems.length === 0 ? (
-              <div className="cartEmpty">Корзина пуста.</div>
+              <div className="cartEmpty">Здесь пока пусто.</div>
             ) : (
               cartItems.map(({ product, qty }) => (
                 <div key={product.id} className="cartItemCard">

@@ -14,7 +14,7 @@ export function Header() {
           </Link>
 
           <div className="headerIcons">
-            <Link className="iconLink" to="/">
+            <Link className="iconLink" to="/favorites">
               <FiHeart className="iconSvg" size={22} />
               {favoritesCount > 0 ? (
                 <span className="iconBadge">{favoritesCount}</span>

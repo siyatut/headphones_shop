@@ -10,13 +10,12 @@ export function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footerBox">
-          {/* Left: logo */}
           <Link className="footerLogo" to="/">
             QPICK
           </Link>
 
           <nav className="footerNav" aria-label="Footer navigation">
-            <Link className="footerLink" to="/">
+            <Link className="footerLink" to="/favorites">
               Избранное
             </Link>
 
