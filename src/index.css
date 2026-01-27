@@ -475,7 +475,7 @@ a:hover {
 
   color: #df6464;
 
-  z-index: 50; 
+  z-index: 50;
 }
 
 .cartRemoveBtn:hover {
@@ -651,7 +651,7 @@ a:hover {
 }
 
 @media (max-width: 1024px) {
-  
+
   .cartLayout {
     grid-template-columns: 1fr;
   }

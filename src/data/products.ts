@@ -1,6 +1,6 @@
 export type Product = {
   id: string;
-  img: string; 
+  img: string;
   title: string;
   price: number;
   rate: number;
@@ -11,7 +11,7 @@ export type Product = {
 export const products: Product[] = [
   {
     id: "s852i-1",
-    img: "/src/assets/S852I.png",
+    img: "/assets/S852I.png",
     title: "Apple BYZ S852I",
     price: 2927,
     oldPrice: 3527,
@@ -20,7 +20,7 @@ export const products: Product[] = [
   },
   {
     id: "earpods-1",
-    img: "/src/assets/earpods1.png",
+    img: "/assets/earpods1.png",
     title: "Apple EarPods",
     price: 2327,
     rate: 4.5,
@@ -28,7 +28,7 @@ export const products: Product[] = [
   },
   {
     id: "earpods-2",
-    img: "/src/assets/earpods2.png",
+    img: "/assets/earpods2.png",
     title: "Apple EarPods",
     price: 2327,
     rate: 4.5,
@@ -36,7 +36,7 @@ export const products: Product[] = [
   },
   {
     id: "s852i-2",
-    img: "/src/assets/S852I.png",
+    img: "/assets/S852I.png",
     title: "Apple BYZ S852I",
     price: 2927,
     rate: 4.7,
@@ -44,7 +44,7 @@ export const products: Product[] = [
   },
   {
     id: "earpods-3",
-    img: "/src/assets/earpods1.png",
+    img: "/assets/earpods1.png",
     title: "Apple EarPods",
     price: 2327,
     rate: 4.5,
@@ -52,7 +52,7 @@ export const products: Product[] = [
   },
   {
     id: "earpods-4",
-    img: "/src/assets/earpods2.png",
+    img: "/assets/earpods2.png",
     title: "Apple EarPods",
     price: 2327,
     rate: 4.5,
@@ -60,7 +60,7 @@ export const products: Product[] = [
   },
   {
     id: "airpods-1",
-    img: "/src/assets/airpods.png",
+    img: "/assets/airpods.png",
     title: "Apple AirPods",
     price: 9527,
     rate: 4.7,
@@ -68,7 +68,7 @@ export const products: Product[] = [
   },
   {
     id: "gerlax-gh04",
-    img: "/src/assets/gerlax.png",
+    img: "/assets/gerlax.png",
     title: "GERLAX GH-04",
     price: 6527,
     rate: 4.7,
@@ -76,7 +76,7 @@ export const products: Product[] = [
   },
   {
     id: "borofone-bo4",
-    img: "/src/assets/borofone.png",
+    img: "/assets/borofone.png",
     title: "BOROFONE BO4",
     price: 7527,
     rate: 4.7,
