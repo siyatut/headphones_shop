@@ -1,9 +1,12 @@
 import { products } from "../data/products";
 import { useShop } from "../store/shop";
 import { FiTrash2 } from "react-icons/fi";
+import { useState } from "react";
+import { CheckoutModal } from "../components/CheckoutModal";
 
 export function CartPage() {
   const { cart, inc, dec, remove } = useShop();
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   const cartItems = Object.entries(cart)
     .map(([id, qty]) => {
@@ -86,19 +89,29 @@ export function CartPage() {
           <div className="cartTotalCard">
             <div className="cartTotalRow">
               <div className="cartTotalLabel">ИТОГО</div>
-              <div className="cartTotalValue">₽ {total.toLocaleString("ru-RU")}</div>
+              <div className="cartTotalValue">
+                ₽ {total.toLocaleString("ru-RU")}
+              </div>
             </div>
 
             <button
               type="button"
               className="checkoutBtn"
-              onClick={() => alert(`Оформление: товаров ${totalCount}, сумма ₽ ${total}`)}
+              onClick={() => setCheckoutOpen(true)}
             >
               Перейти к оформлению
             </button>
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      <CheckoutModal
+        open={checkoutOpen}
+        onClose={() => setCheckoutOpen(false)}
+        total={total}
+        totalCount={totalCount}
+      />
     </div>
   );
 }
