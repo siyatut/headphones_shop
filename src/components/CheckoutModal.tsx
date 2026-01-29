@@ -3,6 +3,7 @@ import { FiX } from "react-icons/fi";
 import { useEscape } from "../hooks/useEscape";
 import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
 import { formatPrice } from "../utils/formatPrice";
+import { formatCardNumber, formatCvv, formatExp } from "../utils/cardFormatters";
 
 type Props = {
   open: boolean;
@@ -12,21 +13,6 @@ type Props = {
 };
 
 type Method = "sbp" | "cardOnDelivery" | "newCard";
-
-function formatCardNumber(value: string) {
-  const digits = value.replace(/\D/g, "").slice(0, 16);
-  return digits.replace(/(\d{4})(?=\d)/g, "$1 ");
-}
-
-function formatExp(value: string) {
-  const digits = value.replace(/\D/g, "").slice(0, 4);
-  if (digits.length <= 2) return digits;
-  return `${digits.slice(0, 2)}/${digits.slice(2, 4)}`;
-}
-
-function formatCvv(value: string) {
-  return value.replace(/\D/g, "").slice(0, 4);
-}
 
 export function CheckoutModal({ open, onClose, total, totalCount }: Props) {
   const [method, setMethod] = useState<Method>("sbp");
