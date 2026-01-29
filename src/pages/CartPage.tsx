@@ -1,27 +1,15 @@
-import { products } from "../data/products";
-import { useShop } from "../store/shop";
+import { useMemo, useState } from "react";
 import { FiTrash2 } from "react-icons/fi";
-import { useState } from "react";
 import { CheckoutModal } from "../components/CheckoutModal";
+import { useShop } from "../store/shop";
+import { getCartItems, getCartTotals } from "../store/cartSelectors";
 
 export function CartPage() {
   const { cart, inc, dec, remove } = useShop();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
 
-  const cartItems = Object.entries(cart)
-    .map(([id, qty]) => {
-      const product = products.find((p) => p.id === id);
-      if (!product) return null;
-      return { product, qty };
-    })
-    .filter(Boolean) as Array<{ product: (typeof products)[number]; qty: number }>;
-
-  const total = cartItems.reduce(
-    (sum, item) => sum + item.product.price * item.qty,
-    0
-  );
-
-  const totalCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
+  const cartItems = useMemo(() => getCartItems(cart), [cart]);
+  const { total, totalCount } = useMemo(() => getCartTotals(cartItems), [cartItems]);
 
   return (
     <div className="page">
@@ -47,9 +35,7 @@ export function CartPage() {
 
                   <div className="cartItemInner">
                     <div className="cartItemImage">
-                      {product.img ? (
-                        <img src={product.img} alt={product.title} />
-                      ) : null}
+                      {product.img ? <img src={product.img} alt={product.title} /> : null}
                     </div>
 
                     <div className="cartQtyRow">
@@ -89,15 +75,14 @@ export function CartPage() {
           <div className="cartTotalCard">
             <div className="cartTotalRow">
               <div className="cartTotalLabel">ИТОГО</div>
-              <div className="cartTotalValue">
-                ₽ {total.toLocaleString("ru-RU")}
-              </div>
+              <div className="cartTotalValue">₽ {total.toLocaleString("ru-RU")}</div>
             </div>
 
             <button
               type="button"
               className="checkoutBtn"
               onClick={() => setCheckoutOpen(true)}
+              disabled={cartItems.length === 0} 
             >
               Перейти к оформлению
             </button>
@@ -105,7 +90,6 @@ export function CartPage() {
         </div>
       </div>
 
-      {/* Modal */}
       <CheckoutModal
         open={checkoutOpen}
         onClose={() => setCheckoutOpen(false)}
