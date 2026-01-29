@@ -7,10 +7,11 @@ import { useShop } from "../store/shop";
 export function FavoritesPage() {
   const { addToCart, toggleFavorite, isFavorite, favorites } = useShop();
 
-  const favProducts = useMemo(
-    () => products.filter((p) => favorites.includes(p.id)),
-    [favorites]
-  );
+  const favoritesSet = useMemo(() => new Set(favorites), [favorites]);
+
+  const favProducts = useMemo(() => {
+    return products.filter((p) => favoritesSet.has(p.id));
+  }, [favoritesSet]);
 
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [activeProduct, setActiveProduct] = useState<Product | null>(null);
@@ -48,7 +49,11 @@ export function FavoritesPage() {
         )}
       </div>
 
-      <ProductDetailsModal open={detailsOpen} onClose={closeDetails} product={activeProduct} />
+      <ProductDetailsModal
+        open={detailsOpen}
+        onClose={closeDetails}
+        product={activeProduct}
+      />
     </div>
   );
 }
