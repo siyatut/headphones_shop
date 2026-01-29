@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { FiX } from "react-icons/fi";
 import { useEscape } from "../hooks/useEscape";
+import { formatPrice } from "../utils/formatPrice";
 
 type Props = {
   open: boolean;
@@ -43,10 +44,7 @@ export function CheckoutModal({ open, onClose, total, totalCount }: Props) {
     setCvv("");
   }, [open]);
 
-  const formattedTotal = useMemo(
-    () => `₽ ${total.toLocaleString("ru-RU")}`,
-    [total]
-  );
+  const formattedTotal = useMemo(() => formatPrice(total), [total]);
 
   const canSubmitNewCard = useMemo(() => {
     const digits = cardNumber.replace(/\D/g, "");

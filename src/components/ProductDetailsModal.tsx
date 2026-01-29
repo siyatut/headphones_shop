@@ -2,6 +2,7 @@ import { FiX } from "react-icons/fi";
 import starIcon from "../assets/star.png";
 import type { Product } from "../data/products";
 import { useEscape } from "../hooks/useEscape";
+import { formatPrice } from "../utils/formatPrice";
 
 type Props = {
   open: boolean;
@@ -46,11 +47,7 @@ export function ProductDetailsModal({ open, onClose, product }: Props) {
           <div className="productModalGrid">
             <div className="productModalImgWrap">
               {product.img ? (
-                <img
-                  className="productModalImg"
-                  src={product.img}
-                  alt={product.title}
-                />
+                <img className="productModalImg" src={product.img} alt={product.title} />
               ) : null}
             </div>
 
@@ -64,10 +61,12 @@ export function ProductDetailsModal({ open, onClose, product }: Props) {
                 </div>
 
                 <div className="productModalPriceRow">
-                  <span className="productModalPrice">{product.price} ₽</span>
+                  <span className="productModalPrice">{formatPrice(product.price)}</span>
 
                   {hasOld ? (
-                    <span className="productModalOldPrice">{product.oldPrice} ₽</span>
+                    <span className="productModalOldPrice">
+                      {formatPrice(product.oldPrice!)}
+                    </span>
                   ) : null}
                 </div>
 

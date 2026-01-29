@@ -3,13 +3,17 @@ import { FiTrash2 } from "react-icons/fi";
 import { CheckoutModal } from "../components/CheckoutModal";
 import { useShop } from "../store/shop";
 import { getCartItems, getCartTotals } from "../store/cartSelectors";
+import { formatPrice } from "../utils/formatPrice";
 
 export function CartPage() {
   const { cart, inc, dec, remove } = useShop();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   const cartItems = useMemo(() => getCartItems(cart), [cart]);
-  const { total, totalCount } = useMemo(() => getCartTotals(cartItems), [cartItems]);
+  const { total, totalCount } = useMemo(
+    () => getCartTotals(cartItems),
+    [cartItems]
+  );
 
   return (
     <div className="page">
@@ -62,10 +66,14 @@ export function CartPage() {
 
                     <div className="cartItemInfo">
                       <div className="cartItemName">{product.title}</div>
-                      <div className="cartItemPriceMuted">{product.price} ₽</div>
+                      <div className="cartItemPriceMuted">
+                        {formatPrice(product.price)}
+                      </div>
                     </div>
 
-                    <div className="cartItemSum">{product.price * qty} ₽</div>
+                    <div className="cartItemSum">
+                      {formatPrice(product.price * qty)}
+                    </div>
                   </div>
                 </div>
               ))
@@ -75,14 +83,14 @@ export function CartPage() {
           <div className="cartTotalCard">
             <div className="cartTotalRow">
               <div className="cartTotalLabel">ИТОГО</div>
-              <div className="cartTotalValue">₽ {total.toLocaleString("ru-RU")}</div>
+              <div className="cartTotalValue">{formatPrice(total)}</div>
             </div>
 
             <button
               type="button"
               className="checkoutBtn"
               onClick={() => setCheckoutOpen(true)}
-              disabled={cartItems.length === 0} 
+              disabled={cartItems.length === 0}
             >
               Перейти к оформлению
             </button>

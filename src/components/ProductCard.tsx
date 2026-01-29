@@ -1,6 +1,7 @@
 import type { Product } from "../data/products";
 import starIcon from "../assets/star.png";
 import { FiHeart, FiEye } from "react-icons/fi";
+import { formatPrice } from "../utils/formatPrice";
 
 type Props = {
   product: Product;
@@ -23,7 +24,6 @@ export function ProductCard({
 
   return (
     <div className="card">
-      {/* View Button */}
       <button
         type="button"
         className="viewBtn"
@@ -54,11 +54,7 @@ export function ProductCard({
       </button>
 
       <div className="cardImage">
-        {product.img ? (
-          <img src={product.img} alt={product.title} />
-        ) : (
-          <div className="imgPlaceholder" />
-        )}
+        {product.img ? <img src={product.img} alt={product.title} /> : <div className="imgPlaceholder" />}
       </div>
 
       <div className="cardBody">
@@ -66,10 +62,10 @@ export function ProductCard({
           <div className="cardTitle">{product.title}</div>
 
           <div className="cardPrice">
-            <span className="priceCurrent">{product.price} ₽</span>
+            <span className="priceCurrent">{formatPrice(product.price)}</span>
 
             <span className={`priceOld ${hasOld ? "" : "priceOldHidden"}`}>
-              {hasOld ? `${product.oldPrice} ₽` : "0 ₽"}
+              {hasOld ? formatPrice(product.oldPrice!) : formatPrice(0)}
             </span>
           </div>
         </div>
@@ -80,7 +76,7 @@ export function ProductCard({
             <span className="ratingValue">{product.rate}</span>
           </div>
 
-          <button className="buyBtn" onClick={onBuy}>
+          <button type="button" className="buyBtn" onClick={onBuy}>
             Купить
           </button>
         </div>
