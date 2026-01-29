@@ -1,4 +1,3 @@
-
 /* ===== CART PAGE ===== */
 
 .cartTitle {
@@ -155,7 +154,6 @@
   white-space: nowrap;
 }
 
-
 /* ===== TOTAL CARD ===== */
 
 .cartTotalCard {
@@ -225,14 +223,91 @@
   opacity: 0.9;
 }
 
+/* ===== TABLET ===== */
 @media (max-width: 1024px) {
-
   .cartLayout {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .cartItemCard {
     width: 100%;
     max-width: 633px;
+  }
+
+  .cartTotalCard {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
+/* ===== MOBILE: "снимаем" absolute и делаем нормальную сетку ===== */
+@media (max-width: 640px) {
+  .cartItemCard {
+    height: auto;
+    padding: 16px;
+  }
+
+  .cartRemoveBtn {
+    right: 16px;
+  }
+
+  /* Снимаем позиционирование, чтобы элементы не наезжали */
+  .cartItemInner {
+    height: auto;
+    position: static;
+
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    grid-template-areas:
+      "img info"
+      "qty sum";
+    gap: 12px;
+    align-items: start;
+  }
+
+  .cartItemImage {
+    position: static;
+    width: 96px;
+    height: 96px;
+    grid-area: img;
+  }
+
+  .cartItemImage img {
+    width: 96px;
+    height: 96px;
+  }
+
+  .cartItemInfo {
+    position: static;
+    grid-area: info;
+    min-width: 0;
+  }
+
+  .cartItemName {
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .cartItemPriceMuted {
+    margin-top: 8px;
+  }
+
+  .cartQtyRow {
+    position: static;
+    width: auto;
+    grid-area: qty;
+    justify-content: flex-start;
+    gap: 14px;
+    margin-top: 4px;
+  }
+
+  .cartItemSum {
+    position: static;
+    grid-area: sum;
+    text-align: right;
+    margin-top: 10px;
   }
 }
