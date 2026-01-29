@@ -31,7 +31,7 @@ export function Footer() {
           <div className="footerService">
             <a
               className="footerLink footerTerms"
-              href="https://i.pinimg.com/736x/cb/1c/5e/cb1c5e4312c8cacda6e4d3a1222724c6.jpg"
+              href="https://i.pinimg.com/736x/82/39/ef/8239ef9d52e5df84c63d68a55dd3ff1b.jpg"
               target="_blank"
               rel="noreferrer"
             >
@@ -52,7 +52,7 @@ export function Footer() {
           <div className="footerSocial" aria-label="Social links">
             <a
               className="socialLink"
-              href="https://vk.com/dobro_memi"
+              href="https://vk.com/neoflex_ru"
               target="_blank"
               rel="noreferrer"
               aria-label="VK"
