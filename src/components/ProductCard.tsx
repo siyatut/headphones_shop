@@ -42,19 +42,17 @@ export function ProductCard({
         title={favorite ? "Убрать из избранного" : "Добавить в избранное"}
       >
         <FiHeart
-          className="favIcon"
+          className={`favIcon ${favorite ? "favIconActive" : ""}`}
           size={22}
-          style={{
-            color: "#FF8A00",
-            fill: favorite ? "#FF8A00" : "transparent",
-            stroke: "#FF8A00",
-            strokeWidth: 2,
-          }}
         />
       </button>
 
       <div className="cardImage">
-        {product.img ? <img src={product.img} alt={product.title} /> : <div className="imgPlaceholder" />}
+        {product.img ? (
+          <img src={product.img} alt={product.title} />
+        ) : (
+          <div className="imgPlaceholder" />
+        )}
       </div>
 
       <div className="cardBody">

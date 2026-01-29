@@ -1,5 +1,3 @@
-
-
 /* ===== CARD ===== */
 
 .card {
@@ -49,7 +47,6 @@
   color: #1c1c1c;
 }
 
-
 /* ===== FAVORITE BUTTON (top-right) ===== */
 
 .favBtn {
@@ -78,14 +75,13 @@
 .favIcon {
   display: block;
   color: #ff8a00;
+  stroke: #ff8a00;
+  stroke-width: 2px;
+  fill: transparent;
 }
 
-.favIconOutline {
-  color: #ff8a00;
-}
-
-.favIconFilled {
-  color: #ff8a00;
+.favIconActive {
+  fill: #ff8a00;
 }
 
 /* ===== CARD IMAGE ===== */
