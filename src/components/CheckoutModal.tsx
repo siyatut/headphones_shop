@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { FiX } from "react-icons/fi";
+import { useEscape } from "../hooks/useEscape";
 
 type Props = {
   open: boolean;
@@ -32,14 +33,7 @@ export function CheckoutModal({ open, onClose, total, totalCount }: Props) {
   const [exp, setExp] = useState("");
   const [cvv, setCvv] = useState("");
 
-  useEffect(() => {
-    if (!open) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open, onClose]);
+  useEscape(onClose, open);
 
   useEffect(() => {
     if (!open) return;
@@ -49,7 +43,10 @@ export function CheckoutModal({ open, onClose, total, totalCount }: Props) {
     setCvv("");
   }, [open]);
 
-  const formattedTotal = useMemo(() => `₽ ${total.toLocaleString("ru-RU")}`, [total]);
+  const formattedTotal = useMemo(
+    () => `₽ ${total.toLocaleString("ru-RU")}`,
+    [total]
+  );
 
   const canSubmitNewCard = useMemo(() => {
     const digits = cardNumber.replace(/\D/g, "");
@@ -227,7 +224,9 @@ export function CheckoutModal({ open, onClose, total, totalCount }: Props) {
             onClick={submit}
           >
             {primaryBtnText}
-            {method !== "newCard" ? <span className="payPrimarySum">{formattedTotal}</span> : null}
+            {method !== "newCard" ? (
+              <span className="payPrimarySum">{formattedTotal}</span>
+            ) : null}
           </button>
         </div>
       </div>

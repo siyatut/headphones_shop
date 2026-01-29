@@ -1,7 +1,7 @@
-import { useEffect } from "react";
 import { FiX } from "react-icons/fi";
 import starIcon from "../assets/star.png";
 import type { Product } from "../data/products";
+import { useEscape } from "../hooks/useEscape";
 
 type Props = {
   open: boolean;
@@ -10,16 +10,7 @@ type Props = {
 };
 
 export function ProductDetailsModal({ open, onClose, product }: Props) {
-  useEffect(() => {
-    if (!open) return;
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open, onClose]);
+  useEscape(onClose, open);
 
   const onOverlayClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target === e.currentTarget) onClose();
@@ -30,11 +21,7 @@ export function ProductDetailsModal({ open, onClose, product }: Props) {
   const hasOld = Boolean(product.oldPrice);
 
   return (
-    <div
-      className="modalOverlay"
-      onMouseDown={onOverlayClick}
-      role="presentation"
-    >
+    <div className="modalOverlay" onMouseDown={onOverlayClick} role="presentation">
       <div
         className="modalCard productModalCard"
         role="dialog"
@@ -80,9 +67,7 @@ export function ProductDetailsModal({ open, onClose, product }: Props) {
                   <span className="productModalPrice">{product.price} ₽</span>
 
                   {hasOld ? (
-                    <span className="productModalOldPrice">
-                      {product.oldPrice} ₽
-                    </span>
+                    <span className="productModalOldPrice">{product.oldPrice} ₽</span>
                   ) : null}
                 </div>
 
@@ -95,11 +80,7 @@ export function ProductDetailsModal({ open, onClose, product }: Props) {
             </div>
           </div>
 
-          <button
-            type="button"
-            className="productModalOkBtn"
-            onClick={onClose}
-          >
+          <button type="button" className="productModalOkBtn" onClick={onClose}>
             Понятно
           </button>
         </div>
