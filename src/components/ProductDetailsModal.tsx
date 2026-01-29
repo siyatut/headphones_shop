@@ -2,6 +2,7 @@ import { FiX } from "react-icons/fi";
 import starIcon from "../assets/star.png";
 import type { Product } from "../data/products";
 import { useEscape } from "../hooks/useEscape";
+import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
 import { formatPrice } from "../utils/formatPrice";
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
 
 export function ProductDetailsModal({ open, onClose, product }: Props) {
   useEscape(onClose, open);
+  useLockBodyScroll(open);
 
   const onOverlayClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target === e.currentTarget) onClose();
@@ -38,6 +40,7 @@ export function ProductDetailsModal({ open, onClose, product }: Props) {
             onClick={onClose}
             aria-label="Закрыть"
             title="Закрыть"
+            autoFocus
           >
             <FiX size={20} />
           </button>

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { FiX } from "react-icons/fi";
 import { useEscape } from "../hooks/useEscape";
+import { useLockBodyScroll } from "../hooks/useLockBodyScroll";
 import { formatPrice } from "../utils/formatPrice";
 
 type Props = {
@@ -35,6 +36,7 @@ export function CheckoutModal({ open, onClose, total, totalCount }: Props) {
   const [cvv, setCvv] = useState("");
 
   useEscape(onClose, open);
+  useLockBodyScroll(open);
 
   useEffect(() => {
     if (!open) return;
@@ -86,6 +88,7 @@ export function CheckoutModal({ open, onClose, total, totalCount }: Props) {
             onClick={onClose}
             aria-label="Закрыть"
             title="Закрыть"
+            autoFocus
           >
             <FiX size={20} />
           </button>
