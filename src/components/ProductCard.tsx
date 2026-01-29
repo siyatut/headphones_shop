@@ -34,7 +34,6 @@ export function ProductCard({
         <FiEye className="viewIcon" size={20} />
       </button>
 
-      {/* Favorite Button */}
       <button
         type="button"
         className="favBtn"
