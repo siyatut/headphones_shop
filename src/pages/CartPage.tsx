@@ -9,8 +9,11 @@ export function CartPage() {
   const { cart, inc, dec, remove } = useShop();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
 
-  const cartItems = useMemo(() => getCartItems(cart), [cart]);
-  const { total, totalCount } = useMemo(() => getCartTotals(cartItems), [cartItems]);
+  const { cartItems, total, totalCount } = useMemo(() => {
+    const cartItems = getCartItems(cart);
+    const { total, totalCount } = getCartTotals(cartItems);
+    return { cartItems, total, totalCount };
+  }, [cart]);
 
   return (
     <div className="page">
