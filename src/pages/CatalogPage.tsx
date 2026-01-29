@@ -1,15 +1,12 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { ProductCard } from "../components/ProductCard";
 import { ProductDetailsModal } from "../components/ProductDetailsModal";
 import { products, type Product } from "../data/products";
 import { useShop } from "../store/shop";
 
 export function CatalogPage() {
-  const wired = useMemo(() => products.filter((p) => p.section === "wired"), []);
-  const wireless = useMemo(
-    () => products.filter((p) => p.section === "wireless"),
-    []
-  );
+  const wired = products.filter((p) => p.section === "wired");
+  const wireless = products.filter((p) => p.section === "wireless");
 
   const { addToCart, toggleFavorite, isFavorite } = useShop();
 
@@ -58,7 +55,11 @@ export function CatalogPage() {
         </div>
       </div>
 
-      <ProductDetailsModal open={detailsOpen} onClose={closeDetails} product={activeProduct} />
+      <ProductDetailsModal
+        open={detailsOpen}
+        onClose={closeDetails}
+        product={activeProduct}
+      />
     </div>
   );
 }
