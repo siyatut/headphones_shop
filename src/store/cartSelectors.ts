@@ -15,10 +15,14 @@ export function getCartItems(cart: Record<string, number>): CartItem[] {
 }
 
 export function getCartTotals(cartItems: CartItem[]) {
-  const total = cartItems.reduce(
-    (sum, item) => sum + item.product.price * item.qty,
-    0
+  const { total, totalCount } = cartItems.reduce(
+    (acc, item) => {
+      acc.total += item.product.price * item.qty;
+      acc.totalCount += item.qty;
+      return acc;
+    },
+    { total: 0, totalCount: 0 }
   );
-  const totalCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
+
   return { total, totalCount };
 }
