@@ -1,0 +1,223 @@
+
+
+/* ===== CARD ===== */
+
+.card {
+  width: 350px;
+  height: 407px;
+  background: #fff;
+  border-radius: 30px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+}
+
+/* ===== VIEW BUTTON (top-left) ===== */
+
+.viewBtn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+  z-index: 10;
+}
+
+.viewBtn:hover {
+  opacity: 0.85;
+}
+
+.viewIcon {
+  color: #838383;
+}
+
+.viewBtn:hover .viewIcon {
+  color: #1c1c1c;
+}
+
+
+/* ===== FAVORITE BUTTON (top-right) ===== */
+
+.favBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+  z-index: 10;
+}
+
+.favBtn:hover {
+  opacity: 0.85;
+}
+
+.favIcon {
+  display: block;
+  color: #ff8a00;
+}
+
+.favIconOutline {
+  color: #ff8a00;
+}
+
+.favIconFilled {
+  color: #ff8a00;
+}
+
+/* ===== CARD IMAGE ===== */
+
+.cardImage {
+  height: 237px;
+  display: grid;
+  place-items: center;
+}
+
+.cardImage img {
+  width: 220px;
+  height: 237px;
+  object-fit: contain;
+}
+
+.imgPlaceholder {
+  width: 220px;
+  height: 237px;
+  border-radius: 12px;
+  background: #f2f2f2;
+}
+
+/* ===== CARD BODY ===== */
+
+.cardBody {
+  margin-top: auto;
+  padding-bottom: 27px;
+}
+
+.cardTitleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.cardTitle {
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1;
+  letter-spacing: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== PRICE ===== */
+
+.cardPrice {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.priceCurrent {
+  color: #ff8a00;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1;
+  text-align: center;
+}
+
+.priceOld {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  color: rgba(255, 138, 0, 0.6);
+  text-decoration: line-through;
+  min-height: 13px;
+  text-align: center;
+}
+
+.priceOldHidden {
+  visibility: hidden;
+}
+
+/* ===== BOTTOM ROW ===== */
+
+.cardBottomRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* ===== RATING ===== */
+
+.ratingBox {
+  width: 60px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ratingStarIcon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.ratingValue {
+  color: #838383;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* ===== BUY BUTTON ===== */
+
+.buyBtn {
+  border: none;
+  background: transparent;
+  padding: 0;
+
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1;
+  letter-spacing: 0;
+
+  cursor: pointer;
+
+  position: relative;
+  z-index: 10;
+}
+
+.buyBtn:hover {
+  opacity: 0.7;
+}

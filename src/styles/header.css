@@ -1,0 +1,61 @@
+
+
+/* ===== HEADER ===== */
+
+.header {
+  padding: 16px 0;
+}
+
+.headerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 1;
+}
+
+.headerIcons {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.iconLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconSvg {
+  color: #838383;
+}
+
+.iconLink:hover .iconSvg {
+  color: #1c1c1c;
+}
+
+.iconBadge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+
+  display: grid;
+  place-items: center;
+
+  background: #ff8a00;
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}

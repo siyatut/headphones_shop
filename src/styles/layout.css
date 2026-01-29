@@ -1,0 +1,54 @@
+
+
+/* ===== APP LAYOUT (sticky footer) ===== */
+
+.appLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.appMain {
+  flex: 1;
+}
+
+/* ===== LAYOUT CONTAINER ===== */
+
+.container {
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@media (max-width: 1150px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+.main {
+  margin-top: 28px;
+}
+
+
+/* ===== PAGE ===== */
+
+.page {
+  padding: 24px 0;
+}
+
+.sectionTitle {
+  margin: 28px 0 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #838383;
+}
+
+/* ===== GRID ===== */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 350px);
+  gap: 30px;
+  justify-content: start;
+}
