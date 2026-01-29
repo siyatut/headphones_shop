@@ -1,33 +1,54 @@
+import { useMemo, useState } from "react";
 import { ProductCard } from "../components/ProductCard";
-import { products } from "../data/products";
+import { ProductDetailsModal } from "../components/ProductDetailsModal";
+import { products, type Product } from "../data/products";
 import { useShop } from "../store/shop";
 
 export function FavoritesPage() {
-  const { favorites, toggleFavorite, isFavorite, addToCart } = useShop();
+  const { addToCart, toggleFavorite, isFavorite, favorites } = useShop();
 
-  const favoriteProducts = products.filter((p) => favorites.includes(p.id));
+  const favProducts = useMemo(
+    () => products.filter((p) => favorites.includes(p.id)),
+    [favorites]
+  );
+
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [activeProduct, setActiveProduct] = useState<Product | null>(null);
+
+  const openDetails = (p: Product) => {
+    setActiveProduct(p);
+    setDetailsOpen(true);
+  };
+
+  const closeDetails = () => {
+    setDetailsOpen(false);
+    setActiveProduct(null);
+  };
 
   return (
     <div className="page">
       <div className="container">
         <h2 className="cartTitle">Избранное</h2>
 
-        <div className="grid">
-          {favoriteProducts.length === 0 ? (
-            <div className="cartEmpty">Здесь пока пусто.</div>
-          ) : (
-            favoriteProducts.map((p) => (
+        {favProducts.length === 0 ? (
+          <div className="cartEmpty">Здесь пока пусто.</div>
+        ) : (
+          <div className="grid">
+            {favProducts.map((p) => (
               <ProductCard
                 key={p.id}
                 product={p}
                 onBuy={() => addToCart(p.id)}
                 onToggleFavorite={() => toggleFavorite(p.id)}
                 favorite={isFavorite(p.id)}
+                onView={() => openDetails(p)}
               />
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
+
+      <ProductDetailsModal open={detailsOpen} onClose={closeDetails} product={activeProduct} />
     </div>
   );
 }

@@ -1,12 +1,30 @@
+import { useMemo, useState } from "react";
 import { ProductCard } from "../components/ProductCard";
-import { products } from "../data/products";
+import { ProductDetailsModal } from "../components/ProductDetailsModal";
+import { products, type Product } from "../data/products";
 import { useShop } from "../store/shop";
 
 export function CatalogPage() {
-  const wired = products.filter((p) => p.section === "wired");
-  const wireless = products.filter((p) => p.section === "wireless");
+  const wired = useMemo(() => products.filter((p) => p.section === "wired"), []);
+  const wireless = useMemo(
+    () => products.filter((p) => p.section === "wireless"),
+    []
+  );
 
   const { addToCart, toggleFavorite, isFavorite } = useShop();
+
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const [activeProduct, setActiveProduct] = useState<Product | null>(null);
+
+  const openDetails = (p: Product) => {
+    setActiveProduct(p);
+    setDetailsOpen(true);
+  };
+
+  const closeDetails = () => {
+    setDetailsOpen(false);
+    setActiveProduct(null);
+  };
 
   return (
     <div className="page">
@@ -20,6 +38,7 @@ export function CatalogPage() {
               onBuy={() => addToCart(p.id)}
               onToggleFavorite={() => toggleFavorite(p.id)}
               favorite={isFavorite(p.id)}
+              onView={() => openDetails(p)}
             />
           ))}
         </div>
@@ -33,10 +52,13 @@ export function CatalogPage() {
               onBuy={() => addToCart(p.id)}
               onToggleFavorite={() => toggleFavorite(p.id)}
               favorite={isFavorite(p.id)}
+              onView={() => openDetails(p)}
             />
           ))}
         </div>
       </div>
+
+      <ProductDetailsModal open={detailsOpen} onClose={closeDetails} product={activeProduct} />
     </div>
   );
 }

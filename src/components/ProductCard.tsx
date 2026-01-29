@@ -1,6 +1,6 @@
 import type { Product } from "../data/products";
 import starIcon from "../assets/star.png";
-import { FiHeart } from "react-icons/fi";
+import { FiHeart, FiEye } from "react-icons/fi";
 
 type Props = {
   product: Product;
@@ -8,13 +8,32 @@ type Props = {
 
   favorite: boolean;
   onToggleFavorite: () => void;
+
+  onView: () => void;
 };
 
-export function ProductCard({ product, onBuy, favorite, onToggleFavorite }: Props) {
+export function ProductCard({
+  product,
+  onBuy,
+  favorite,
+  onToggleFavorite,
+  onView,
+}: Props) {
   const hasOld = Boolean(product.oldPrice);
 
   return (
     <div className="card">
+      {/* View Button */}
+      <button
+        type="button"
+        className="viewBtn"
+        onClick={onView}
+        aria-label="Посмотреть товар"
+        title="Посмотреть"
+      >
+        <FiEye className="viewIcon" size={20} />
+      </button>
+
       {/* Favorite Button */}
       <button
         type="button"
