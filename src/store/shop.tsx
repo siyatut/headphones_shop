@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 type CartMap = Record<string, number>;
 
@@ -49,22 +49,21 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     sessionStorage.setItem(FAV_KEY, JSON.stringify(favorites));
   }, [favorites]);
 
-  const cartCount = useMemo(
-    () => Object.values(cart).reduce((sum, qty) => sum + qty, 0),
-    [cart]
-  );
+  const cartCount = useMemo(() => {
+    return Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+  }, [cart]);
 
   const favoritesCount = favorites.length;
 
-  const addToCart = (productId: string) => {
+  const addToCart = useCallback((productId: string) => {
     setCart((prev) => ({ ...prev, [productId]: (prev[productId] ?? 0) + 1 }));
-  };
+  }, []);
 
-  const inc = (productId: string) => {
+  const inc = useCallback((productId: string) => {
     setCart((prev) => ({ ...prev, [productId]: (prev[productId] ?? 0) + 1 }));
-  };
+  }, []);
 
-  const dec = (productId: string) => {
+  const dec = useCallback((productId: string) => {
     setCart((prev) => {
       const current = prev[productId] ?? 0;
       if (current <= 1) {
@@ -74,26 +73,44 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
       }
       return { ...prev, [productId]: current - 1 };
     });
-  };
+  }, []);
 
-  const remove = (productId: string) => {
+  const remove = useCallback((productId: string) => {
     setCart((prev) => {
       const copy = { ...prev };
       delete copy[productId];
       return copy;
     });
-  };
+  }, []);
 
-  const isFavorite = (productId: string) => favorites.includes(productId);
+  const favoriteSet = useMemo(() => new Set(favorites), [favorites]);
 
-  const toggleFavorite = (productId: string) => {
+  const isFavorite = useCallback(
+    (productId: string) => favoriteSet.has(productId),
+    [favoriteSet]
+  );
+
+  const toggleFavorite = useCallback((productId: string) => {
     setFavorites((prev) => {
       if (prev.includes(productId)) return prev.filter((id) => id !== productId);
       return [...prev, productId];
     });
-  };
+  }, []);
 
-  const value: ShopContextValue = {
+  const value = useMemo<ShopContextValue>(() => {
+    return {
+      cart,
+      favorites,
+      cartCount,
+      favoritesCount,
+      addToCart,
+      inc,
+      dec,
+      remove,
+      isFavorite,
+      toggleFavorite,
+    };
+  }, [
     cart,
     favorites,
     cartCount,
@@ -104,7 +121,7 @@ export function ShopProvider({ children }: { children: React.ReactNode }) {
     remove,
     isFavorite,
     toggleFavorite,
-  };
+  ]);
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
 }
